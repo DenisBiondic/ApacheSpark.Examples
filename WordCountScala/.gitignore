@@ -17,4 +17,4 @@ project/target
 *.iws
 
 target/
-out/
+results/
