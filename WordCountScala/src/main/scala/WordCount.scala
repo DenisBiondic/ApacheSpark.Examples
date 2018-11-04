@@ -19,7 +19,12 @@ object WordCount {
     sc.textFile(inputFile)
       .flatMap(line => line.split(" "))
       .map(word => (word, 1))
-      .reduceByKey((accValue, newValue) => accValue + newValue)
+
+      // normal reduce would be written as reduce((accumulator, newValue) => accumulator + newValue)
+      // However, since Spark reduce distributed nature is both associative and commutative, 
+      // there is no guarantee that value1 or value2 is the accumulator
+      .reduceByKey((value1, value2) => value1 + value2)
+      
       .sortBy(kvPair => kvPair._2, false)
       .saveAsTextFile(outputFolder)
   }
