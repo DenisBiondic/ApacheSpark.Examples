@@ -1,0 +1,6 @@
+.idea/azureSettings.xml
+.idea/**/**.iml
+.idea/libraries
+target
+.idea/modules
+.idea/modules.xml
